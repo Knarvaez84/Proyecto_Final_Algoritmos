@@ -28,7 +28,7 @@ public class MenuPrincipal {
             System.out.println("\n===== SISTEMA DE ENTREGAS Y RUTAS =====");
             System.out.println("1. Gestionar paquetes");
             System.out.println("0. Salir");
-            opcion = leerEntero("Opción: ");
+            opcion = leerEntero("Digite el numero de la accion a realizar: ");
 
             switch (opcion) {
                 case 1:
@@ -36,10 +36,10 @@ public class MenuPrincipal {
                     break;
                
                 case 0:
-                    System.out.println("Hasta luego.");
+                    System.out.println("¡Gracias por Utilizar el programa!");
                     break;
                 default:
-                    System.out.println("Opción inválida.");
+                    System.out.println("Opción NO VALIDA");
             }
         } while (opcion != 0);
     }
@@ -53,7 +53,7 @@ public class MenuPrincipal {
             System.out.println("3. Buscar paquete por código");
             System.out.println("4. Eliminar paquete por código");
             System.out.println("0. Volver");
-            opcion = leerEntero("Opción: ");
+            opcion = leerEntero("Digite el numero de la accion a realizar: ");
 
             switch (opcion) {
                 case 1:
@@ -122,7 +122,7 @@ public class MenuPrincipal {
             try {
                 return Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Dato NO VALIDO, favor ingrese un número entero.");
+                System.out.println("Dato NO VALIDO, favor ingrese un número entero: ");
             }
         }
     }
@@ -133,7 +133,7 @@ public class MenuPrincipal {
             try {
                 return Double.parseDouble(sc.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un número VALIDO");
             }
         }
     }
