@@ -32,6 +32,7 @@ public class ProyeBasesdeDatos {
 
         System.out.println("\n=== BUSCAR ===");
         System.out.println("P003: " + lista.buscar("P003"));   
+                
         System.out.println("P999: " + lista.buscar("P999"));   
 
         System.out.println("\n=== ELIMINAR P001 (primer nodo) ===");
@@ -43,6 +44,10 @@ public class ProyeBasesdeDatos {
         lista.mostrar();
 
         System.out.println("\nTamaño final: " + lista.getTamanio());
+        
+        //aca probar el menu
+        MenuPrincipal menu = new MenuPrincipal(lista);
+        menu.mostrarMenu();
     }
 
 }
