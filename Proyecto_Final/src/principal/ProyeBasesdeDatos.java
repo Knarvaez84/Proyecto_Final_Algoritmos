@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package pruebas;
+package principal;
 
 
 import estructuras.ListaPaquetes;
 import modelo.Paquete;
+import pruebas.MenuPrincipal;
 
 /**
  *
