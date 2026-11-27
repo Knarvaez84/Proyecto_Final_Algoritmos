@@ -5,6 +5,7 @@
 package pruebas;
 
 //Importo los paquetes
+import algoritmos.BusquedaPaquetes;
 import estructuras.ListaPaquetes;
 import modelo.Paquete;
 import java.util.Scanner; //Libreria que permite leer el dato que digita el usuario
@@ -19,12 +20,14 @@ import modelo.Operacion;
 public class MenuPrincipal {
 
     private final ListaPaquetes lista;
+    private final Paquete[] listaPrueba;   //temporal
     private final Scanner sc = new Scanner(System.in);
     private final ColaDespacho cola = new ColaDespacho();
     private final PilaOperaciones historial = new PilaOperaciones();
 
-    public MenuPrincipal(ListaPaquetes lista) { //Aqui jalamos la lista del main
-        this.lista = lista;
+    public MenuPrincipal(ListaPaquetes lista, Paquete[] listaPrueba) {   
+    this.lista = lista;
+    this.listaPrueba = listaPrueba;                                  
     }
 
     public void mostrarMenu() {
@@ -34,6 +37,7 @@ public class MenuPrincipal {
             System.out.println("1. Gestionar paquetes");
             System.out.println("2. Cola de despacho");
             System.out.println("3. Historial de operaciones");
+            System.out.println("4. Busqueda de paquetes");
             System.out.println("0. Salir");
             opcion = leerEntero("Digite el numero de la accion a realizar: ");
 
@@ -46,6 +50,9 @@ public class MenuPrincipal {
                     break;
                 case 3:
                  gestionarHistorial();
+                    break;
+                case 4:
+                 gestionarBusquedas();
                     break;
                
                 case 0:
@@ -157,6 +164,60 @@ public class MenuPrincipal {
             }
         }
     }
+    
+    // ---------- PUNTO 3 Y 4: BUSQUEDA SECUENCIAL Y BINARIA ----------
+    public void gestionarBusquedas() {
+        int opcion;
+        do {
+            System.out.println("\n--- Busqueda de paquetes (" + lista.getTamanio() + " registrados) ---");
+            System.out.println("1. Busqueda secuencial por codigo");
+            System.out.println("2. Busqueda binaria por codigo");
+            System.out.println("0. Volver");
+            opcion = leerEntero("Digite el numero de la accion a realizar: ");
+ 
+            switch (opcion) {
+                case 1:
+                    Paquete[] datos = listaPrueba;
+                    int indice = BusquedaPaquetes.buscarSecuencial(datos, leerTexto("Código a buscar: "));
+                    mostrarResultado(datos, indice);
+                    break;
+                case 2:
+                    Paquete[] datosBin = listaPrueba;
+                    // Cuando este el codigo ordenamiento aca añadire ordeeré los datos
+                    System.out.print("Arreglo Ordenado: ");
+                    mostrarCodigos(datosBin);
+                    if (BusquedaPaquetes.estaOrdenado(datosBin)) {
+                        System.out.println("El arreglo esta ordenado: se puede usar busqueda binaria.");
+                        int indiceBin = BusquedaPaquetes.buscarBinaria(datosBin, leerTexto("Código a buscar: "));
+                        mostrarResultado(datosBin, indiceBin);
+                    } else {
+                        System.out.println("El arreglo NO esta ordenado: la busqueda binaria requiere datos ordenados.");
+                    }
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opcion NO VALIDA.");
+            }
+        } while (opcion != 0);
+    }
+ 
+    private void mostrarResultado(Paquete[] datos, int indice) {
+        if (indice == -1) {
+            System.out.println("El paquete buscado NO EXISTE");
+        } else {
+            System.out.println("Paquete Encontrado: " + datos[indice]);
+        }
+        System.out.println("Comparaciones realizadas: " + BusquedaPaquetes.getComparaciones());
+    }
+ 
+    private void mostrarCodigos(Paquete[] datos) {
+        for (int i = 0; i < datos.length; i++) {
+            System.out.print(datos[i].getCodigo() + " ");
+        }
+        System.out.println();
+    }
+    
         // ---------- PUNTO 10: COLA DE DESPACHO ----------
     public void gestionarDespacho() {
         int opcion;

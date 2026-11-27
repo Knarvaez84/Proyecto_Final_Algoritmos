@@ -14,7 +14,7 @@ import modelo.Paquete;
  * @author Joshua
  */
 public class ListaPaquetes {
-     private NodoPaquete primero;
+    private NodoPaquete primero;
     private int tamanio;
 
     public ListaPaquetes() {
